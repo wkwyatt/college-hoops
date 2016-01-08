@@ -17,13 +17,13 @@
 			<img id="home-img" class="team-img team-vote" team="" src="">
 			<img id="home-logo" class="school-logo" src="">
 			<h3 id="home-team"></h3>
-			<h3 id="home-votes">40% of the vote</h3>
+			<h3 id="home-votes"></h3>
 		</div>
 		<div class="team away">
 			<img id="away-img" class="team-img team-vote" team="" src="">
 			<img id="away-logo" class="school-logo" src="">
 			<h3 id="away-team"></h3>
-			<h3 id="away-votes">40% of the vote</h3>
+			<h3 id="away-votes"></h3>
 		</div>
 	</div>
 	<button id="next-match">Next</button>

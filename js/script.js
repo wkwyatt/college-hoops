@@ -5,8 +5,12 @@ $(document).ready(function() {
 			if(status != "success"){
 				console.log(status);
 			}
-			console.log(data);
-			var nextMatch = JSON.parse(data);  // parses result into json that is readable by jquery
+			var result = JSON.parse(data);  // parses result into json that is readable by jquery
+			console.log(result);
+			var nextMatch = result[0];
+			console.log(nextMatch);
+			var homePerc = Math.round(result[2]);
+			var awayPerc = Math.round(result[3]);
 
 			var matchup = nextMatch["id"];
 			var homeTeam = nextMatch["team1"];
@@ -27,6 +31,10 @@ $(document).ready(function() {
 			$('#away-img').attr('team', awayTeam);
 			$('#away-img').attr('src', awayTeamImg);
 			$('#away-logo').attr('src', awayTeamLogo);
+
+			console.log(homePerc);
+			$('#home-votes').html(homePerc+"% of votes");
+			$('#away-votes').html(awayPerc+"% of votes");
 	});
 
 	$('.team-vote').click(function(){
@@ -66,7 +74,12 @@ $(document).ready(function() {
 			if(status != "success"){
 				console.log(status);
 			}
-			var nextMatch = JSON.parse(data);  // parses result into json that is readable by jquery
+			var result = JSON.parse(data);  // parses result into json that is readable by jquery
+			console.log(result);
+			var nextMatch = result[0];
+			console.log(nextMatch);
+			var homePerc = result[2];
+			var awayPerc = result[3];
 
 			var matchup = nextMatch["id"];
 			var homeTeam = nextMatch["team1"];
@@ -89,8 +102,8 @@ $(document).ready(function() {
 			$('#away-logo').attr('src', awayTeamLogo);
 
 
-			// $('#home-votes').text();
-			// $('#away-votes').text();
+			$('#home-votes').text(homePerc+"% of votes");
+			$('#away-votes').text(awayPerc+"% of votes");
 		});
 	});
 });
