@@ -8,6 +8,22 @@
 		if(!$result){ die(print "Error with insert: ".mysql_error()); }
 		print "post success";
 
+		$query = "SELECT COUNT(team) AS total FROM basketball_votes WHERE mid = ".$_POST['matchup'];
+		$result = mysql_query($query);
+		if(!$result){ die(print "Error with count query: ".mysql_error()); }
+		$total = mysql_fetch_assoc($result);
+
+		$query = "SELECT COUNT(team) AS teamUpdate FROM basketball_votes WHERE team = '".$_POST['vote']."' AND mid = ".$_POST['matchup'];
+		$result = mysql_query($query);
+		if(!$result){ die(print "Error with team count query: ".mysql_error()); }
+		$teamUpdate = mysql_fetch_assoc($result);
+
+		$teamPerc = ((int)$teamUpdate["teamUpdate"] / (int)$total["total"]) * 100;
+
+		$return = [];
+		array_push($return, $total);
+		array_push($return, $teamPerc);
+		print_r(json_encode($return));
 		
 	}
 

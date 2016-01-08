@@ -49,6 +49,17 @@ $(document).ready(function() {
 			success: function(result){
 				console.log("===returned===");
 				console.log(result);
+
+				// var data = JSON.parse(result);  // parses result into json that is readable by jquery
+				// console.log(data);
+				var teamPerc = Math.round(result[1]);
+
+				$(this).find('.votes').each().html(teamPerc+"% of votes");
+				// var nextMatch = result[0];
+				// console.log(nextMatch);
+				// var homePerc = Math.round(result[2]);
+				// var awayPerc = Math.round(result[3]);
+
 				// var homeVotes = Number(obj.home_vote_perc);
 				// var awayVotes = Number(obj.away_vote_perc);
 
@@ -78,8 +89,8 @@ $(document).ready(function() {
 			console.log(result);
 			var nextMatch = result[0];
 			console.log(nextMatch);
-			var homePerc = result[2];
-			var awayPerc = result[3];
+			var homePerc = Math.round(result[2]);
+			var awayPerc = Math.round(result[3]);
 
 			var matchup = nextMatch["id"];
 			var homeTeam = nextMatch["team1"];
@@ -102,8 +113,8 @@ $(document).ready(function() {
 			$('#away-logo').attr('src', awayTeamLogo);
 
 
-			$('#home-votes').text(homePerc+"% of votes");
-			$('#away-votes').text(awayPerc+"% of votes");
+			$('#home-votes').html(homePerc+"% of votes");
+			$('#away-votes').html(awayPerc+"% of votes");
 		});
 	});
 });
